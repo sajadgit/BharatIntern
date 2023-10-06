@@ -1,0 +1,67 @@
+.textfeild {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    padding: 0.2rem 0.2rem;
+    min-width: 16rem;
+    outline: none;
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+    background-color: #fafafa;
+}
+
+.button {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    padding: 0.16rem 0.36rem 0.24rem 0.36rem;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white !important;
+}
+
+.blue {
+    background-color: #1b58dc;
+    transition: all 0.2s;
+}
+
+.blue:hover {
+    background-color: #2272c1;
+}
+
+.red {
+    background-color: #009100;
+    transition: all 0.2s;
+}
+
+.red:hover {
+    background-color: #067b06;
+}
+
+.green {
+    background-color: #14A44D;
+    transition: all 0.2s;
+}
+
+.green:hover {
+    background-color: #0f7839;
+}
+
+.text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    padding: 0.2rem 0;
+}
+
+.id {
+    color: #868686;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
