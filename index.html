@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Content Management System </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #editor {
+            background-color: lavender;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .toolbar form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 50%;
+            padding: 10px 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea{
+            border-radius: 3px;
+        }
+
+        button[type="Submit"],
+        button[type="reset"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="Submit"]:hover,
+        button[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+
+        #preview {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 900px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #previewTitle {
+            font-size: 24px;
+            margin-bottom: 10px;
+            
+        }
+
+        #previewContent {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #previewImage {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        #previewVideo {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+            margin-left: 5.5em;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1> Content Management System </h1>
+    <div id="editor">
+        <div class="toolbar">
+            <form action="" id="blogPostForm">
+                <label for="title">Add Title</label>
+                <input type="text" name="title" id="title">
+                
+                <label for="content">Add Content</label>
+                <textarea name="content" id="content" rows="6"></textarea>
+
+                <label for="image">Add Image:</label>
+                <input type="file" id="image" name="image">
+                
+                <label for="addVideo">Add Video:</label>
+                <input type="file" id="addVideo" name="addVideo">
+
+                <button type="submit" id="save">Save</button>
+                <button type="reset" id="clear">Clear</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="preview">
+        <h2>Preview</h2>
+        <hr>
+        <br>
+        <h2 id="previewTitle"></h2>
+        <div id="previewContent"></div>
+        <img id="previewImage" src="" alt="Preview Image">
+        <video id="previewVideo" controls width="80%" height="auto"></video>
+    </div>
+
+    <script>
+        const blogPostForm = document.getElementById("blogPostForm");
+const previewTitle = document.getElementById("previewTitle");
+const previewContent = document.getElementById("previewContent");
+const previewImage = document.getElementById("previewImage");
+const previewVideo = document.getElementById("previewVideo");
+
+// Function to clear the preview elements
+function clearPreview() {
+    previewTitle.textContent = "";
+    previewContent.textContent = "";
+    previewImage.src = "";
+    previewVideo.src = "";
+    previewVideo.style.display = "none";
+}
+
+blogPostForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    
+    // Get form input values
+    const title = document.getElementById("title").value;
+    const content = document.getElementById("content").value;
+    const image = document.getElementById("image").files[0];
+    const video = document.getElementById("addVideo").files[0];
+
+    // Display input values in the preview
+    previewTitle.textContent = title;
+    previewContent.textContent = content;
+    previewImage.src = image ? URL.createObjectURL(image) : "";
+
+    // Display video in the preview
+    if (video) {
+        const videoURL = URL.createObjectURL(video);
+        previewVideo.src = videoURL;
+        previewVideo.style.display = "block";
+    } else {
+        previewVideo.src = "";
+        previewVideo.style.display = "none";
+    }
+});
+
+// Add a click event listener to the "Clear" button
+const clearButton = document.getElementById("clear");
+clearButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    blogPostForm.reset(); // Reset the form inputs
+    clearPreview(); // Clear the preview content
+});
+
+    </script>
+</body>
+</html>
